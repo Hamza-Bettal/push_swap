@@ -6,7 +6,7 @@
 /*   By: hbettal <hbettal@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/08 21:24:23 by hbettal           #+#    #+#             */
-/*   Updated: 2024/03/09 18:54:45 by hbettal          ###   ########.fr       */
+/*   Updated: 2024/03/10 23:07:45 by hbettal          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,4 +39,17 @@ void	ft_lstadd_back(t_list **lst, t_list *new)
 	while (unit->next)
 		unit = unit->next;
 	unit->next = new;
+}
+
+int	ft_lstsize(t_list *lst)
+{
+	size_t	i;
+
+	i = 0;
+	while (lst)
+	{
+		lst = lst->next;
+		i++;
+	}
+	return (i);
 }

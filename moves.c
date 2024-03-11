@@ -1,38 +1,41 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   push_swap.c                                        :+:      :+:    :+:   */
+/*   moves.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hbettal <hbettal@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/03/06 16:02:46 by hbettal           #+#    #+#             */
-/*   Updated: 2024/03/11 00:32:23 by hbettal          ###   ########.fr       */
+/*   Created: 2024/03/10 23:38:04 by hbettal           #+#    #+#             */
+/*   Updated: 2024/03/11 00:27:59 by hbettal          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
-void f()
+
+void	ra(t_list **stack)
 {
-	system("leaks a.out");
-}
-int main(int ac, char **av)
-{
-	t_list *s;
-	t_list *tmp;
-	// atexit(f);
-	s = NULL;
-	if (ac > 1)
+	int nbr;
+	t_list	*tmp;
+	
+	tmp = *stack;
+	nbr = tmp->num;
+	while (tmp->next)
 	{
-		args_check(ac, av, &s);
-		tmp = s;
-		printf("done\n");
-		sort_check(tmp);
-		while (s)
-		{
-			printf("%d\n", s->num);
-			s = s->next;
-		}
-		return (0);
+		tmp->num = tmp->next->num;
+		tmp = tmp->next;
 	}
-	return (write(2, "error\n", 6), 1);
+	tmp->num = nbr;
+	printf("done 1\n");
+}
+
+void	sa(t_list **stack)
+{
+	t_list *tmp;
+	int nbr;
+
+	tmp = *stack;
+	nbr = (*stack)->num;
+	(*stack)->num = tmp->next->num;
+	tmp->num = nbr;
+	printf("done 2\n");
 }

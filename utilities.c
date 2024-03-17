@@ -6,7 +6,7 @@
 /*   By: hbettal <hbettal@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/06 18:44:36 by hbettal           #+#    #+#             */
-/*   Updated: 2024/03/09 16:34:30 by hbettal          ###   ########.fr       */
+/*   Updated: 2024/03/17 21:31:26 by hbettal          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,6 +71,7 @@ char	*ft_strjoin(char *s1, char *s2)
 	char	*all;
 	size_t	i;
 	size_t	j;
+
 	i = -1;
 	j = 0;
 	if (!s1 && !s2)
@@ -90,16 +91,16 @@ char	*ft_strjoin(char *s1, char *s2)
 	while (s2[++i])
 		all[j++] = s2[i];
 	all[j] = 0;
-	// (free(s1), free(s2));
+	free(s1);
 	return (all);
 }
 
-long ft_atoi(char *str)
+long	ft_atoi(char *str)
 {
-	long sign;
-	long i;
-	long sum;
-	
+	long	sign;
+	long	i;
+	long	sum;
+
 	i = 0;
 	sign = 1;
 	sum = 0;

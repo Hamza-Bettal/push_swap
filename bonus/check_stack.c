@@ -6,48 +6,11 @@
 /*   By: hbettal <hbettal@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/06 16:06:24 by hbettal           #+#    #+#             */
-/*   Updated: 2024/03/17 21:31:44 by hbettal          ###   ########.fr       */
+/*   Updated: 2024/03/19 02:51:17 by hbettal          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
-
-int	index_assist(t_list *iter, int min, int index)
-{
-	while (iter)
-	{
-		if (iter->num < min)
-			index++;
-		iter = iter->next;
-	}
-	return (index);
-}
-
-void	get_index(t_list **stack)
-{
-	t_list	*tmp;
-	t_list	*iter;
-	int		index;
-	int		min;
-
-	tmp = *stack;
-	while (tmp)
-	{
-		min = INT_MAX;
-		iter = *stack;
-		while (iter)
-		{
-			if (iter->num >= tmp->num && iter->num < min)
-				min = iter->num;
-			iter = iter->next;
-		}
-		index = 0;
-		iter = *stack;
-		index = index_assist(iter, min, index);
-		tmp->index = index;
-		tmp = tmp->next;
-	}
-}
+#include "checker.h"
 
 t_list	*fill_stack(int j, int *nums)
 {
@@ -58,7 +21,6 @@ t_list	*fill_stack(int j, int *nums)
 	i = -1;
 	while (j > ++i)
 		ft_lstadd_back(&stack, ft_lstnew(nums[i]));
-	get_index(&stack);
 	return (stack);
 }
 
@@ -82,7 +44,7 @@ void	double_check(int ac, char **av, t_list **s)
 		var.j = var.i;
 		while (++var.j < count_words(var.str, ' '))
 			if (var.nums[var.i] == var.nums[var.j])
-				(write(2, "error\n", 6), exit(1));
+				(write(2, "Error\n", 6), exit(1));
 	}
 	*s = fill_stack(count_words(var.str, ' '), var.nums);
 	(double_free(var.number), free(var.str), free(var.nums));
@@ -102,7 +64,7 @@ void	args_check(int ac, char **av, t_list **s)
 		while (numbers[j])
 		{
 			if (ft_atoi(numbers[j]) > INT_MAX || ft_atoi(numbers[j]) < INT_MIN)
-				(write(2, "error\n", 6), exit(1));
+				(write(2, "Error\n", 6), exit(1));
 			free(numbers[j]);
 			j++;
 		}

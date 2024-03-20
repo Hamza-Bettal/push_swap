@@ -6,7 +6,7 @@
 /*   By: hbettal <hbettal@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/15 03:18:36 by hbettal           #+#    #+#             */
-/*   Updated: 2024/03/17 21:37:03 by hbettal          ###   ########.fr       */
+/*   Updated: 2024/03/19 22:26:08 by hbettal          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,9 +87,10 @@ int	lower_pos(t_list *stack, int index)
 	int		i;
 
 	tmp = stack;
+	i = 0;
 	while (tmp)
 	{
-		if (tmp->index < index)
+		if (tmp->index == index)
 			return (i);
 		tmp = tmp->next;
 		i++;

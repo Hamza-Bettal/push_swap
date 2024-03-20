@@ -6,13 +6,13 @@
 /*   By: hbettal <hbettal@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/10 23:38:04 by hbettal           #+#    #+#             */
-/*   Updated: 2024/03/17 21:30:36 by hbettal          ###   ########.fr       */
+/*   Updated: 2024/03/19 22:36:14 by hbettal          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#include "checker.h"
 
-void	rotate(t_list **stack, char type)
+void	rotate(t_list **stack)
 {
 	t_list	*tmp;
 
@@ -24,15 +24,15 @@ void	rotate(t_list **stack, char type)
 	tmp->next = *stack;
 	(*stack) = (*stack)->next;
 	tmp->next->next = NULL;
-	if (type == 'a')
-		write(1, "ra\n", 3);
-	else if (type == 'b')
-		write(1, "rb\n", 3);
-	else if (type == 'm')
-		write(1, "rr\n", 3);
 }
 
-void	swap(t_list **stack, char type)
+void	rr(t_list **stack_a, t_list **stack_b)
+{
+	rotate(stack_a);
+	rotate(stack_b);
+}
+
+void	swap(t_list **stack)
 {
 	t_list	*tmp;
 
@@ -40,13 +40,9 @@ void	swap(t_list **stack, char type)
 	(*stack)->next = tmp->next;
 	tmp->next = (*stack);
 	(*stack) = tmp;
-	if (type == 'a')
-		write(1, "sa\n", 3);
-	else if (type == 'b')
-		write(1, "sb\n", 3);
 }
 
-void	reverse_rotate(t_list **stack, char type)
+void	reverse_rotate(t_list **stack)
 {
 	t_list	*tmp;
 	t_list	*last;
@@ -60,13 +56,9 @@ void	reverse_rotate(t_list **stack, char type)
 	last->next = *stack;
 	tmp->next = NULL;
 	*stack = last;
-	if (type == 'a')
-		write(1, "rra\n", 4);
-	else if (type == 'b')
-		write(1, "rrb\n", 4);
 }
 
-void	push(t_list **from, t_list **to, char type)
+void	push(t_list **from, t_list **to)
 {
 	t_list	*tmp;
 
@@ -76,8 +68,4 @@ void	push(t_list **from, t_list **to, char type)
 	*from = (*from)->next;
 	tmp->next = *to;
 	*to = tmp;
-	if (type == 'a')
-		write(1, "pa\n", 3);
-	else
-		write(1, "pb\n", 3);
 }

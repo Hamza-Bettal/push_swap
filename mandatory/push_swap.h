@@ -6,14 +6,13 @@
 /*   By: hbettal <hbettal@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/06 16:02:59 by hbettal           #+#    #+#             */
-/*   Updated: 2024/03/17 21:37:44 by hbettal          ###   ########.fr       */
+/*   Updated: 2024/03/18 22:57:11 by hbettal          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef PUSH_SWAP_H
 # define PUSH_SWAP_H
 
-# include <stdio.h>
 # include <stdlib.h>
 # include <unistd.h>
 # include <limits.h>
@@ -34,6 +33,9 @@ typedef struct var
 	int		i;
 	int		j;
 	int		*nums;
+	int		chunk;
+	int		midchunk;
+	int		origin_chunk;
 }	t_var;
 
 // utilities*
@@ -54,6 +56,9 @@ t_list	*second_higher_num(t_list *stack);
 int		position_finder(t_list *stack, int w);
 int		lower_pos(t_list *stack, int index);
 char	*get_str(t_var	var, int ac, char **av);
+int		last_chunk(t_list *stack, int chunk);
+int		first_chunk(t_list *stack, int chunk);
+void	sort_of_four(t_list *stack_a, t_list *stack_b);
 
 // list*
 int		ft_lstsize(t_list *lst);
@@ -66,5 +71,6 @@ void	rotate(t_list **stack, char type);
 void	swap(t_list **stack, char type);
 void	reverse_rotate(t_list **stack, char type);
 void	push(t_list	**from, t_list **to, char type);
+void	rr(t_list **stack_a, t_list **stack_b);
 
 #endif

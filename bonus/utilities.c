@@ -6,11 +6,11 @@
 /*   By: hbettal <hbettal@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/06 18:44:36 by hbettal           #+#    #+#             */
-/*   Updated: 2024/03/17 21:31:26 by hbettal          ###   ########.fr       */
+/*   Updated: 2024/03/20 00:36:59 by hbettal          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#include "checker.h"
 
 size_t	ft_strlen(char *s)
 {
@@ -108,11 +108,11 @@ long	ft_atoi(char *str)
 		if (str[i++] == '-')
 			sign = -1;
 	if (str[i] == '\0' || str[i] < '0' || str[i] > '9')
-		(write(2, "error\n", 6), exit(1));
+		(write(2, "Error\n", 6), exit(1));
 	while (str[i])
 	{
 		if (str[i] < '0' || str[i] > '9')
-			(write(2, "error\n", 6), exit(1));
+			(write(2, "Error\n", 6), exit(1));
 		sum *= 10;
 		sum += str[i] - '0';
 		i++;

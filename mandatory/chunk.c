@@ -6,7 +6,7 @@
 /*   By: hbettal <hbettal@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/10 15:52:16 by hbettal           #+#    #+#             */
-/*   Updated: 2024/03/17 21:37:41 by hbettal          ###   ########.fr       */
+/*   Updated: 2024/03/19 23:06:52 by hbettal          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,26 +39,28 @@ void	sort_chunk(t_list *stack_a, t_list *stack_b)
 
 void	chunk(t_list *stack_a, t_list *stack_b, int div)
 {
-	int	origin_chunk;
-	int	chunk;
-	int	midchunk;
-	int	i;
+	t_var	var;
 
-	i = 0;
-	origin_chunk = ft_lstsize(stack_a) / div;
-	chunk = origin_chunk;
-	midchunk = chunk / 2;
+	var.i = 0;
+	var.origin_chunk = ft_lstsize(stack_a) / div;
+	var.chunk = var.origin_chunk;
+	var.midchunk = var.chunk / 2;
 	while (stack_a)
 	{
-		while (stack_a->index >= chunk)
+		while (stack_a->index >= var.chunk)
 			rotate(&stack_a, 'a');
 		push(&stack_a, &stack_b, 'b');
-		if (stack_b->index >= midchunk)
-			rotate(&stack_b, 'b');
-		if (++i >= chunk)
+		if (stack_b->next && stack_b->index >= var.midchunk)
 		{
-			chunk += origin_chunk;
-			midchunk += origin_chunk;
+			if (stack_a && stack_a->index >= var.chunk)
+				rr(&stack_a, &stack_b);
+			else
+				rotate(&stack_b, 'b');
+		}
+		if (++var.i >= var.chunk)
+		{
+			var.chunk += var.origin_chunk;
+			var.midchunk += var.origin_chunk;
 		}
 	}
 	sort_chunk(stack_a, stack_b);

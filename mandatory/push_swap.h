@@ -6,7 +6,7 @@
 /*   By: hbettal <hbettal@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/06 16:02:59 by hbettal           #+#    #+#             */
-/*   Updated: 2024/03/18 22:57:11 by hbettal          ###   ########.fr       */
+/*   Updated: 2024/03/21 02:28:58 by hbettal          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,17 +48,16 @@ char	*ft_strjoin(char *s1, char *s2);
 size_t	ft_strlen(char *s);
 int		count_words(char *str, char c);
 void	double_free(char **str);
-void	sort_check(t_list *stack_a, t_list *stack_b);
+void	sort_check(t_list **stack_a, t_list **stack_b);
 t_list	*higher_num(t_list *stack);
 t_list	*lower_num(t_list *stack);
-void	chunk(t_list *stack_a, t_list *stack_b, int div);
+void	chunk(t_list **stack_a, t_list **stack_b, int div);
 t_list	*second_higher_num(t_list *stack);
 int		position_finder(t_list *stack, int w);
 int		lower_pos(t_list *stack, int index);
 char	*get_str(t_var	var, int ac, char **av);
 int		last_chunk(t_list *stack, int chunk);
 int		first_chunk(t_list *stack, int chunk);
-void	sort_of_four(t_list *stack_a, t_list *stack_b);
 
 // list*
 int		ft_lstsize(t_list *lst);

@@ -6,7 +6,7 @@
 /*   By: hbettal <hbettal@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/06 16:02:46 by hbettal           #+#    #+#             */
-/*   Updated: 2024/03/18 22:52:14 by hbettal          ###   ########.fr       */
+/*   Updated: 2024/03/21 17:33:51 by hbettal          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ int	main(int ac, char **av)
 	if (ac > 1)
 	{
 		args_check(ac, av, &stack_a);
-		sort_check(stack_a, stack_b);
+		sort_check(&stack_a, &stack_b);
 	}
 	return (0);
 }

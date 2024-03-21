@@ -6,7 +6,7 @@
 /*   By: hbettal <hbettal@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/10 23:38:04 by hbettal           #+#    #+#             */
-/*   Updated: 2024/03/19 22:36:14 by hbettal          ###   ########.fr       */
+/*   Updated: 2024/03/20 03:10:25 by hbettal          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,8 @@ void	swap(t_list **stack)
 {
 	t_list	*tmp;
 
+	if (!(*stack) || !(*stack)->next)
+		return ;
 	tmp = (*stack)->next;
 	(*stack)->next = tmp->next;
 	tmp->next = (*stack);

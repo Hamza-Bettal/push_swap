@@ -6,7 +6,7 @@
 /*   By: hbettal <hbettal@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/06 18:44:36 by hbettal           #+#    #+#             */
-/*   Updated: 2024/03/19 23:09:42 by hbettal          ###   ########.fr       */
+/*   Updated: 2024/03/20 23:30:51 by hbettal          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,7 +85,7 @@ char	*ft_strjoin(char *s1, char *s2)
 	return (all);
 }
 
-static int	no_overflow(int sign, unsigned long long n, int count)
+static long	no_overflow(int sign, unsigned long long n, int count)
 {
 	if ((n > LLONG_MAX || count > 19) && sign == -1)
 		(write(2, "Error\n", 6), exit(1));
@@ -96,10 +96,10 @@ static int	no_overflow(int sign, unsigned long long n, int count)
 
 long	ft_atoi(char *str)
 {
-	int					i;
-	int					count;
-	int					sign;
-	unsigned long long	n;
+	int		i;
+	int		count;
+	int		sign;
+	long	n;
 
 	i = 0;
 	count = 0;
@@ -112,7 +112,7 @@ long	ft_atoi(char *str)
 		(write(2, "Error\n", 6), exit(1));
 	while (str[i] == '0')
 		i++;
-	while (str[i] >= '0' && str[i] <= '9')
+	while (str[i])
 	{
 		if (str[i] < '0' || str[i] > '9')
 			(write(2, "Error\n", 6), exit(1));

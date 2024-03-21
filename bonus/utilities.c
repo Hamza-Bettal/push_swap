@@ -6,7 +6,7 @@
 /*   By: hbettal <hbettal@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/06 18:44:36 by hbettal           #+#    #+#             */
-/*   Updated: 2024/03/20 00:36:59 by hbettal          ###   ########.fr       */
+/*   Updated: 2024/03/21 00:26:08 by hbettal          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,26 +20,6 @@ size_t	ft_strlen(char *s)
 	while (s[i] != 0)
 		i++;
 	return (i);
-}
-
-char	*ft_strdup(char *s1)
-{
-	size_t		i;
-	size_t		lent;
-	char		*dest;
-
-	i = 0;
-	lent = ft_strlen(s1);
-	dest = (char *)malloc(lent + 1);
-	if (dest == NULL)
-		return (NULL);
-	while (s1[i] != 0)
-	{
-		dest[i] = s1[i];
-		i++;
-	}
-	dest[i] = '\0';
-	return (dest);
 }
 
 char	*ft_substr(char *s, unsigned int start, size_t len)
@@ -95,27 +75,39 @@ char	*ft_strjoin(char *s1, char *s2)
 	return (all);
 }
 
+static long	no_overflow(int sign, unsigned long long n, int count)
+{
+	if ((n > LLONG_MAX || count > 19) && sign == -1)
+		(write(2, "Error\n", 6), exit(1));
+	if ((n > LLONG_MAX || count > 19) && sign == 1)
+		(write(2, "Error\n", 6), exit(1));
+	return (n * sign);
+}
+
 long	ft_atoi(char *str)
 {
-	long	sign;
-	long	i;
-	long	sum;
+	int		i;
+	int		count;
+	int		sign;
+	long	n;
 
 	i = 0;
+	count = 0;
 	sign = 1;
-	sum = 0;
+	n = 0;
 	if (str[i] == '-' || str[i] == '+')
 		if (str[i++] == '-')
-			sign = -1;
+			sign *= -1;
 	if (str[i] == '\0' || str[i] < '0' || str[i] > '9')
 		(write(2, "Error\n", 6), exit(1));
+	while (str[i] == '0')
+		i++;
 	while (str[i])
 	{
 		if (str[i] < '0' || str[i] > '9')
 			(write(2, "Error\n", 6), exit(1));
-		sum *= 10;
-		sum += str[i] - '0';
-		i++;
+		n = (n * 10) + (str[i++] - '0');
+		count++;
 	}
-	return (sum * sign);
+	return (no_overflow(sign, n, count));
 }

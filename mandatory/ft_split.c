@@ -6,7 +6,7 @@
 /*   By: hbettal <hbettal@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/09 18:54:07 by hbettal           #+#    #+#             */
-/*   Updated: 2024/03/17 21:20:24 by hbettal          ###   ########.fr       */
+/*   Updated: 2024/03/21 20:43:46 by hbettal          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,10 +56,10 @@ char	**ft_split(char *s, char c)
 	split = malloc((count_words(s, c) + 1) * sizeof(char *));
 	if (!s[0] || !split)
 		(write(2, "Error\n", 6), exit(1));
-	i = 0;
+	i = -1;
 	j = 0;
 	index = -1;
-	while (i <= ft_strlen(s))
+	while (++i <= ft_strlen(s))
 	{
 		if (s[i] != c && index < 0)
 			index = i;
@@ -68,8 +68,9 @@ char	**ft_split(char *s, char c)
 			split[j++] = word_dup(s, index, i);
 			index = -1;
 		}
-		i++;
 	}
 	split[j] = 0;
+	if (!split[0])
+		(write(2, "Error\n", 6), exit(1));
 	return (split);
 }
